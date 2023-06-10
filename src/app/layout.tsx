@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Simple Card Game",
-  description: "Guess the card will be high or low"
+  description: "Guess the card value will be high or low"
 };
 
 export default function RootLayout({

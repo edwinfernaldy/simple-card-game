@@ -6,7 +6,7 @@ export default function Home() {
     <main className='min-h-screen p-24 flex flex-col justify-evenly'>
       <div className='text-center'>
         <Title>Simple Card Game</Title>
-        <p>Guess the next card.</p>
+        <p>Guess the next card value.</p>
       </div>
 
       <Board />
