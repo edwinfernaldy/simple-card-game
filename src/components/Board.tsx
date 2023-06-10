@@ -1,5 +1,3 @@
-"use-client";
-
 export default function Board() {
   const matrix = [
     [1, 1, 1],
@@ -15,7 +13,7 @@ export default function Board() {
             {data.map((data, i) => {
               return (
                 <div
-                  className='border flex cursor-pointer flex-col justify-center text-center border-gray-700 rounded-lg p-4'
+                  className='border flex cursor-pointer flex-col justify-center text-center border-gray-700 rounded-lg p-10'
                   key={i}
                 >
                   {data}

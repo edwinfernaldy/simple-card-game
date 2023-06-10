@@ -1,5 +1,5 @@
-import Board from "../../components/Board";
-import Title from "../../components/Title";
+import Board from "../components/Board";
+import Title from "../components/Title";
 
 export default function Home() {
   return (
