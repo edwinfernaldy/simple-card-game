@@ -27,10 +27,10 @@ export default function Board() {
   };
 
   return (
-    <div className='grid grid-flow-row gap-4'>
+    <div className='grid grid-flow-row md:gap-4 gap-2'>
       {mat.map((data, i) => {
         return (
-          <div key={i} className='grid grid-flow-col gap-4'>
+          <div key={i} className='grid grid-flow-col md:gap-4 gap-2'>
             {data.map((data, j) => (
               <button
                 className='border bg-red-200 text-black hover:scale-105 transition-all flex cursor-pointer justify-center text-center border-gray-700 rounded-lg p-10'
@@ -39,7 +39,7 @@ export default function Board() {
                   handleClick(i, j);
                 }}
               >
-                {data}
+                <h1 className='font-black text-lg md:text-3xl'>{data}</h1>
               </button>
             ))}
           </div>
