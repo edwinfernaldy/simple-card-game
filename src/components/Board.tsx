@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
@@ -13,7 +13,25 @@ export default function Board() {
     [7, 8, 9]
   ]);
 
-  const handleClick = (r: number, c: number) => {
+  const handleWin = (prev: number, next: number, guess: string) => {
+    if (guess === "high") {
+      if (next > prev) {
+        alert("You Win !");
+      } else {
+        alert("You Lose..");
+      }
+    }
+
+    if (guess === "low") {
+      if (next < prev) {
+        alert("You Win !");
+      } else {
+        alert("You Lose..");
+      }
+    }
+  };
+
+  const handleClick = (r: number, c: number, guess: string) => {
     let random = getRandomInt(13);
 
     if (random == 0) {
@@ -21,6 +39,15 @@ export default function Board() {
     }
 
     let tmp = [...mat];
+
+    if (random === tmp[r][c]) {
+      handleClick(r, c, guess);
+    }
+    const prev = tmp[r][c];
+    const next = random;
+
+    handleWin(prev, next, guess);
+
     tmp[r][c] = random;
 
     setMat(tmp);
@@ -33,24 +60,29 @@ export default function Board() {
           <div key={i} className='grid grid-flow-col md:gap-4 gap-2'>
             {data.map((data, j) => (
               <div className='relative group' key={j}>
-                <button
-                  className='border z-0 bg-red-200 w-full text-black hover:scale-105 transition-all flex cursor-pointer justify-center text-center border-gray-700 rounded-lg p-10'
-                  onClick={() => {
-                    handleClick(i, j);
-                  }}
-                >
+                <button className='border z-0 bg-red-200 w-full text-black hover:scale-105 transition-all flex cursor-pointer justify-center text-center border-gray-700 rounded-lg p-10'>
                   <h1 className='font-black text-lg md:text-3xl'>{data}</h1>
                 </button>
 
                 <div className='absolute inset-0 md:inset-10 z-50 invisible group-hover:visible'>
                   <div className='flex h-full flex-col md:flex-row justify-between'>
-                    <h1 className='p-3 self-center rounded-2xl backdrop-blur-md bg-white/30 hover:scale-105 transition-all cursor-pointer'>
+                    <button
+                      onClick={() => {
+                        handleClick(i, j, "high");
+                      }}
+                      className='p-3 self-center rounded-2xl backdrop-blur-md bg-white/30 hover:scale-105 transition-all cursor-pointer'
+                    >
                       High
-                    </h1>
+                    </button>
 
-                    <h1 className='p-3 self-center rounded-2xl backdrop-blur-md bg-white/30 hover:scale-105 transition-all cursor-pointer'>
+                    <button
+                      onClick={() => {
+                        handleClick(i, j, "low");
+                      }}
+                      className='p-3 self-center rounded-2xl backdrop-blur-md bg-white/30 hover:scale-105 transition-all cursor-pointer'
+                    >
                       Low
-                    </h1>
+                    </button>
                   </div>
                 </div>
               </div>
