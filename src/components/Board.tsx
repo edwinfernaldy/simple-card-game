@@ -41,7 +41,7 @@ export default function Board() {
     let tmp = [...mat];
 
     if (random === tmp[r][c]) {
-      handleClick(r, c, guess);
+      random++;
     }
     const prev = tmp[r][c];
     const next = random;
